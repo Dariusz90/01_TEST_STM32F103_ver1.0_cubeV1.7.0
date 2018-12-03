@@ -142,7 +142,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_Delay(500);
+	  HAL_Delay(200);
+	  HAL_GPIO_TogglePin(QB_DEBUG_LED_GREEN_GPIO_Port, QB_DEBUG_LED_GREEN_Pin);
+	  HAL_Delay(100);
 	  HAL_GPIO_TogglePin(QB_DEBUG_LED_GREEN_GPIO_Port, QB_DEBUG_LED_GREEN_Pin);
     /* USER CODE END WHILE */
 
