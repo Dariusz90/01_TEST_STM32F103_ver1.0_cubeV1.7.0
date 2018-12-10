@@ -1,0 +1,17 @@
+DB_RFM98W.c:473:20:SPI_CS_pin	0	static
+DB_RFM98W.c:434:16:WriteRegister	24	static
+DB_RFM98W.c:457:16:ReadRegister	24	static
+DB_RFM98W.c:112:9:RFM98W_init	16	static
+DB_RFM98W.c:134:9:RFM98W_getRSSI	8	static
+DB_RFM98W.c:140:9:RFM98W_checkInterrupt	0	static
+DB_RFM98W.c:151:9:RFM98W_getRSSIPacket	8	static
+DB_RFM98W.c:157:9:RFM98W_getFrequencyError	8	static
+DB_RFM98W.c:175:6:RFM98W_setMode	8	static
+DB_RFM98W.c:238:6:RFM98W_setFrequency	8	static
+DB_RFM98W.c:256:9:RFM98W_setLoRaMode	8	static
+DB_RFM98W.c:279:6:RFM98W_startReceiving	8	static
+DB_RFM98W.c:301:6:RFM98W_setupTX	8	static
+DB_RFM98W.c:320:9:RFM98W_receiveMessage	24	static
+DB_RFM98W.c:362:9:RFM98W_getLastMessageFlags	0	static
+DB_RFM98W.c:367:6:RFM98W_sendData	40	static
+DB_RFM98W.c:422:9:RFM98W_ReadRegister	0	static

@@ -1,0 +1,2 @@
+DB_soft_timer.c:22:13:soft_timer_handler	12	static
+DB_soft_timer.c:41:9:soft_timer_execute	0	static
