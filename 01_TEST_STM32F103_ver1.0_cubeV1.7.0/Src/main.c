@@ -50,7 +50,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -75,9 +74,9 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
 
-I2C_HandleTypeDef hi2c1;
+CAN_HandleTypeDef hcan;
 
-TIM_HandleTypeDef htim2;
+I2C_HandleTypeDef hi2c2;
 
 UART_HandleTypeDef huart2;
 
@@ -90,8 +89,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_TIM2_Init(void);
-static void MX_I2C1_Init(void);
+static void MX_I2C2_Init(void);
+static void MX_CAN_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -131,9 +130,8 @@ int main(void)
   MX_GPIO_Init();
   MX_ADC1_Init();
   MX_USART2_UART_Init();
-  MX_USB_DEVICE_Init();
-  MX_TIM2_Init();
-  MX_I2C1_Init();
+  MX_I2C2_Init();
+  MX_CAN_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -191,9 +189,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
-  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -246,107 +243,73 @@ static void MX_ADC1_Init(void)
 }
 
 /**
-  * @brief I2C1 Initialization Function
+  * @brief CAN Initialization Function
   * @param None
   * @retval None
   */
-static void MX_I2C1_Init(void)
+static void MX_CAN_Init(void)
 {
 
-  /* USER CODE BEGIN I2C1_Init 0 */
+  /* USER CODE BEGIN CAN_Init 0 */
 
-  /* USER CODE END I2C1_Init 0 */
+  /* USER CODE END CAN_Init 0 */
 
-  /* USER CODE BEGIN I2C1_Init 1 */
+  /* USER CODE BEGIN CAN_Init 1 */
 
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 400000;
-  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  /* USER CODE END CAN_Init 1 */
+  hcan.Instance = CAN1;
+  hcan.Init.Prescaler = 6;
+  hcan.Init.Mode = CAN_MODE_NORMAL;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_10TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_1TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = ENABLE;
+  hcan.Init.AutoWakeUp = DISABLE;
+  hcan.Init.AutoRetransmission = DISABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = DISABLE;
+  if (HAL_CAN_Init(&hcan) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN I2C1_Init 2 */
+  /* USER CODE BEGIN CAN_Init 2 */
 
-  /* USER CODE END I2C1_Init 2 */
+  /* USER CODE END CAN_Init 2 */
 
 }
 
 /**
-  * @brief TIM2 Initialization Function
+  * @brief I2C2 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_TIM2_Init(void)
+static void MX_I2C2_Init(void)
 {
 
-  /* USER CODE BEGIN TIM2_Init 0 */
+  /* USER CODE BEGIN I2C2_Init 0 */
 
-  /* USER CODE END TIM2_Init 0 */
+  /* USER CODE END I2C2_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
+  /* USER CODE BEGIN I2C2_Init 1 */
 
-  /* USER CODE BEGIN TIM2_Init 1 */
+  /* USER CODE END I2C2_Init 1 */
+  hi2c2.Instance = I2C2;
+  hi2c2.Init.ClockSpeed = 400000;
+  hi2c2.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c2.Init.OwnAddress1 = 0;
+  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c2.Init.OwnAddress2 = 0;
+  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C2_Init 2 */
 
-  /* USER CODE END TIM2_Init 1 */
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 359;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 999;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
-  HAL_TIM_MspPostInit(&htim2);
+  /* USER CODE END I2C2_Init 2 */
 
 }
 
@@ -401,6 +364,9 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(QB_DEBUG_LED_GREEN_GPIO_Port, QB_DEBUG_LED_GREEN_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(QB_DEBUG_LED_RED_GPIO_Port, QB_DEBUG_LED_RED_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : QB_DEBUG_LED_GREEN_Pin */
   GPIO_InitStruct.Pin = QB_DEBUG_LED_GREEN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -408,11 +374,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(QB_DEBUG_LED_GREEN_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : IBPB_BUTTON01_Pin */
-  GPIO_InitStruct.Pin = IBPB_BUTTON01_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pin : QB_DEBUG_LED_RED_Pin */
+  GPIO_InitStruct.Pin = QB_DEBUG_LED_RED_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(IBPB_BUTTON01_GPIO_Port, &GPIO_InitStruct);
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(QB_DEBUG_LED_RED_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PB6 PB7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
@@ -432,12 +405,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
 	if (htim->Instance == TIM1) {
-		static uint32_t tim_cnt = 100;
+		static uint32_t tim_cnt = 50;
 		tim_cnt--;
 		if( !tim_cnt )
 		{
-			tim_cnt = 100;
+			tim_cnt = 50;
 			HAL_GPIO_TogglePin(QB_DEBUG_LED_GREEN_GPIO_Port,QB_DEBUG_LED_GREEN_Pin);
+			HAL_GPIO_TogglePin(QB_DEBUG_LED_RED_GPIO_Port,QB_DEBUG_LED_RED_Pin);
 		}
 	}
   /* USER CODE END Callback 0 */
