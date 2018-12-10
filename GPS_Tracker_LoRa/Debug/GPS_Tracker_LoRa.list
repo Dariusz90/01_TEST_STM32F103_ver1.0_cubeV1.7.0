@@ -21,23 +21,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
   8 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
-  9 .debug_info   0001f6be  00000000  00000000  00020035  2**0
+  9 .debug_info   0001f6cc  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 000045f2  00000000  00000000  0003f6f3  2**0
+ 10 .debug_abbrev 000045f2  00000000  00000000  0003f701  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00007012  00000000  00000000  00043ce5  2**0
+ 11 .debug_loc    00007012  00000000  00000000  00043cf3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 00000c00  00000000  00000000  0004acf8  2**3
+ 12 .debug_aranges 00000c00  00000000  00000000  0004ad08  2**3
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000f28  00000000  00000000  0004b8f8  2**3
+ 13 .debug_ranges 00000f28  00000000  00000000  0004b908  2**3
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   00007e39  00000000  00000000  0004c820  2**0
+ 14 .debug_line   00007e71  00000000  00000000  0004c830  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    00003fa8  00000000  00000000  00054659  2**0
+ 15 .debug_str    00003fb6  00000000  00000000  000546a1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .comment      0000007c  00000000  00000000  00058601  2**0
+ 16 .comment      0000007c  00000000  00000000  00058657  2**0
                   CONTENTS, READONLY
- 17 .debug_frame  00002034  00000000  00000000  00058680  2**2
+ 17 .debug_frame  00002034  00000000  00000000  000586d4  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -8409,10 +8409,10 @@ void MX_RTC_Init(void)
  80034be:	2314      	movs	r3, #20
  80034c0:	f88d 3000 	strb.w	r3, [sp]
   sTime.Minutes = BUILD_MIN_BCD;
- 80034c4:	2304      	movs	r3, #4
+ 80034c4:	2319      	movs	r3, #25
  80034c6:	f88d 3001 	strb.w	r3, [sp, #1]
   sTime.Seconds = BUILD_SEC_BCD;
- 80034ca:	2352      	movs	r3, #82	; 0x52
+ 80034ca:	2341      	movs	r3, #65	; 0x41
 
   if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
  80034cc:	2201      	movs	r2, #1
