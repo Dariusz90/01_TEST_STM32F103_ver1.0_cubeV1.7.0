@@ -1,0 +1,2 @@
+DB_GPS_NMEA_Simple.c:71:6:GPS_NMEA_init_simple	0	static
+DB_GPS_NMEA_Simple.c:85:9:GPS_NMEA_readFrame_simple	32	static
