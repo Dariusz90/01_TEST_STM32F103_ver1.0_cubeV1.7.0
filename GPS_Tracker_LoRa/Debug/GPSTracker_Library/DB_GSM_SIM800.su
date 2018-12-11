@@ -1,5 +1,0 @@
-DB_GSM_SIM800.c:228:9:gsm_sendCMD	152	static
-DB_GSM_SIM800.c:81:9:gsm_init	32	static
-DB_GSM_SIM800.c:138:9:gsm_sendSMS	32	static
-DB_GSM_SIM800.c:277:9:gsm_sendGPS_NMEA_location	184	static
-DB_GSM_SIM800.c:329:9:gsm_sendGPRS_location	280	static

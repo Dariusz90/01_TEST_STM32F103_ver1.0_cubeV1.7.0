@@ -1,5 +1,0 @@
-HalSystemCallback.c:19:6:HAL_SYSTICK_Callback	0	static
-HalSystemCallback.c:27:6:HAL_UART_TxCpltCallback	0	static
-HalSystemCallback.c:37:6:HAL_UART_RxCpltCallback	0	static
-HalSystemCallback.c:48:6:HAL_UART_ErrorCallback	32	static
-HalSystemCallback.c:73:6:HAL_GPIO_EXTI_Callback	0	static

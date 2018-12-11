@@ -1,2 +1,0 @@
-DB_string.c:94:12:intToStr	12	static
-DB_string.c:40:6:ftoa_fast	32	static
