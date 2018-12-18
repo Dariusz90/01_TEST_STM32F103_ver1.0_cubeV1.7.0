@@ -32,7 +32,7 @@
 
 #define C
 
-#define TEST_CARD
+//#define TEST_CARD
 //#define SMS_GATE_ONLINE
 //#define SIM_ORANGE
 
@@ -50,7 +50,7 @@
 #ifdef SMS_GATE_ONLINE
 	#define SIM_DESTINATION_PHONE_NUMBER "+380639348839"
 #else
-	#define SIM_DESTINATION_PHONE_NUMBER "+380970719813"
+	#define SIM_DESTINATION_PHONE_NUMBER "+380970728251"	//	"+380970728251"	"+380970719813"
 #endif
 
  #define SIM_GPRS_APN "3g.kyivstar.net"
