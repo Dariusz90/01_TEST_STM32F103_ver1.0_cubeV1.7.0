@@ -14,7 +14,7 @@
 
 #define SLEEP_MODE_ENABLE
 #define not_ONLY_LORA
-#define SLEEP_IN_MINUTES
+//#define SLEEP_IN_MINUTES
 #ifdef SLEEP_IN_MINUTES	// TAK LEPIEJ WYGLADA
 	#define DEFAULT_SLEEP_TIME 5	//	[min]
 #else
